@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<head th:replace="fragments :: page_head(${pageTitle}, 'tag')" />
+	<link th:href="@{/star-rating/css/star-rating.css}" media="all" rel="stylesheet" type="text/css" />
+	<script th:src="@{/star-rating/js/star-rating.js}" type="text/javascript"></script>
+	<link th:href="@{/star-rating/themes/krajee-svg/theme.css}" media="all" rel="stylesheet" type="text/css" />
+	<script th:src="@{/star-rating/themes/krajee-svg/theme.js}"></script>
+</head>
+
+<body>
+<div class="container-fluid">
+	<div th:replace="navigation :: header_menu"></div>
+	<div th:replace="navigation :: search_nav"></div>
+	<div th:replace="breadcrumb :: content"></div>
+	<!-- lưu ý điểm này: 
+	/c/ lấy ra tất cả categories cha,ông,...của category hiện tại 
+	/c/ lấy ra tất cả products thuộc về category hiện tại và tất cả products thuộc về categories con,cháu,... của category hiện tại
+	
+	/p/ lấy ra tất cả categories cha,ông,...của category hiện tại 
+	/p/ để lấy ra product hiện tại
+	
+	 -->
+	<div class="row text-center">
+		<th:block th:each="cat : ${category.children}"> <!-- chỉ hiển thị tất cả categories là con trực tiếp của category hiện tại -->
+			<div class="col" th:if="${cat.enabled == true}">
+				<a th:href="@{'/c/' + ${cat.alias}}"> 
+					<img th:src="@{${cat.imagePath}}" height="100" />
+					<br/>
+					<b>[[${cat.name}]]</b>
+				</a>
+			</div>
+		</th:block>
+	</div>
+	
+	<div class="row">&nbsp;</div>
+	<div class="row">
+		<th:block th:each="product : ${listProducts}"> <!-- listProducts bao gồm tất cả products thuộc về category hiện tại và tất cả products thuộc về categories con,cháu,... của category hiện tại -->
+			<div th:replace="product/product_fragment :: content"></div>
+		</th:block>
+	</div>
+	
+	<div th:replace="fragments :: pagination('/c/' + ${category.alias}, 'products')"></div>
+	
+	<div th:replace="navigation :: footer_menu"></div>
+</div>	
+
+<script type="text/javascript">
+	//chỗ này dùng để hiện sao tương ứng với averageRating
+	$(".product-detail-rating-star").rating({
+		displayOnly: true,
+		hoverOnClera: false,
+		showCaption: false,
+		theme: 'krajee-svg'
+	});
+</script>
+
+</body>
+</html>

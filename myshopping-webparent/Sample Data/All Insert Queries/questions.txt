@@ -1,0 +1,37 @@
+--
+-- Table structure for table `questions`
+--
+
+DROP TABLE IF EXISTS `questions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `questions` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `answer` varchar(255) DEFAULT NULL,
+  `answer_time` datetime(6) DEFAULT NULL,
+  `approved` bit(1) NOT NULL,
+  `ask_time` datetime(6) DEFAULT NULL,
+  `question` varchar(255) DEFAULT NULL,
+  `votes` int NOT NULL,
+  `answerer_id` int DEFAULT NULL,
+  `asker_id` int DEFAULT NULL,
+  `product_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKm993xs48yltdhr0qws3s1mpdn` (`answerer_id`),
+  KEY `FKfujdy3kc9esehjrifstaahivi` (`asker_id`),
+  KEY `FKdnt39hlm1bcye9ivenccipd5s` (`product_id`),
+  CONSTRAINT `FKdnt39hlm1bcye9ivenccipd5s` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),
+  CONSTRAINT `FKfujdy3kc9esehjrifstaahivi` FOREIGN KEY (`asker_id`) REFERENCES `customers` (`id`),
+  CONSTRAINT `FKm993xs48yltdhr0qws3s1mpdn` FOREIGN KEY (`answerer_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `questions`
+--
+
+LOCK TABLES `questions` WRITE;
+/*!40000 ALTER TABLE `questions` DISABLE KEYS */;
+INSERT INTO `questions` VALUES (1,'The Country of Origin is China. Lenovo has manufacturing and assembly facilities all over the world. The actual location of manufacture/assembly of each Lenovo computer is printed on the outside of the box the computer ships in.','2022-03-09 18:44:53.755000',1,'2022-03-09 12:05:08.537000','Is  this made in China? If not, where?',-1,21,5,59),(2,'You could do light gaming with it to play casual games or no-graphic intensive games. But it\'s not going to be a killer gaming machine.','2022-03-09 12:40:50.240000',1,'2022-03-09 12:18:33.566000','is this computer any good for gaming?',2,19,1,59),(3,NULL,NULL,1,'2022-03-09 12:24:19.469000','Does it have bluetooth capabilities for wireless headphones?',4,NULL,3,59),(4,NULL,NULL,1,'2022-03-09 12:26:16.367000','Is this the best 4K camera for now? Also, why is it cheap?',0,NULL,5,1),(5,NULL,NULL,1,'2022-03-09 12:33:39.279000','Can this run the 3d modeling program blender? And if so, how well does it run it?',0,NULL,12,76),(6,NULL,NULL,1,'2022-03-09 12:35:26.822000','Would i have any problem installing window 7 professional on this laptop? yes, that\'s not supported by ms anymore but i know what i need.',0,NULL,11,76),(7,NULL,NULL,1,'2022-03-09 12:44:10.965000','Can you send me this item to test? in exchange I will leave a great review!',-1,NULL,2,59),(8,NULL,NULL,1,'2022-03-09 12:50:00.697000','What is the warranty policy for this product?',1,NULL,1,99),(9,NULL,NULL,1,'2022-03-09 12:51:22.480000','What is the resolution of the webcam camera?',2,NULL,20,59),(10,NULL,NULL,1,'2022-03-09 12:52:34.823000','What software does it come with?',0,NULL,18,59),(11,NULL,NULL,1,'2022-03-09 12:53:37.824000','Does it have an internal microphone?',2,NULL,17,59),(12,'The Lenovo IdeaCentre 3 24 All-in-One system, model number F0EW005TUS stands 17.61 inches tall with the stand installed.','2022-03-09 18:47:49.911000',1,'2022-03-09 18:25:42.859000','What is the final height (including stand)?',2,19,6,59),(13,'No. The Lenovo IdeaCentre 3 24 All-in-One system, model number F0EW005TUS, does not have an HDMI-In port for an external video source.','2022-03-09 18:48:53.126000',1,'2022-03-09 18:27:02.482000','Can I plug my gaming console and use as monitor?',0,19,12,59),(14,'No. The Lenovo IdeaCentre 3 24 All-in-One system, model number F0EW005TUS, does not have a touchscreen.','2022-03-09 18:49:23.904000',1,'2022-03-09 18:28:01.321000','Is this compute touchscreen?',-1,19,7,59),(15,NULL,NULL,1,'2022-03-09 18:29:45.481000','How many USB ports does this computer have?',-1,NULL,5,59),(16,NULL,NULL,1,'2022-03-09 18:30:41.859000','Is this product available in US?',0,NULL,5,48),(17,'While this part has some similar specs, it is not the recommended upgrade for the new 2017 iMac 5K 27” model. We recommend using the Mac specific parts as those are the parts that are tested, qualified, and guaranteed compatible. ','2022-03-10 13:04:15.147000',1,'2022-03-09 18:35:14.764000','Is this compatible with the new imac 5k 27\" 2017?',1,15,5,100),(18,'Yes. It should work just fine in any laptop that accepts 2.5\" SATA drives. For MacBook Pros, that means machines through the mid-2012 model. Don\'t forget to move your Torx screws over to the new drive!','2022-03-09 18:54:04.030000',1,'2022-03-09 18:39:00.893000','Is this compatible with an early-2011 MacBook Pro?',0,21,5,8),(20,'Yes the ILCE7M3 has the Italian language option.','2022-03-09 23:04:31.629000',1,'2022-03-09 23:03:53.761000','It has Italian menu?',0,1,7,11),(21,'Sony commitment to customer satisfaction is our top priority. You cannot, the LCD can tilt facing up and facing down.','2022-03-09 23:06:12.593000',1,'2022-03-09 23:05:41.134000','Can you turn the LCD panel to face front for selfies?',2,19,17,11),(22,'This is a generic SATA drive and is compatible with ALL versions of Windows that support SATA.','2022-03-10 15:58:45.672000',1,'2022-03-10 15:56:35.297000','Is this drive compatible with Windows 10?',0,15,18,8),(23,'Up to 256 GB.','2022-03-10 16:04:41.964000',1,'2022-03-10 16:03:38.008000','What\'s the largest size memory card that can used with this model?',2,21,4,1);
+/*!40000 ALTER TABLE `questions` ENABLE KEYS */;
+UNLOCK TABLES;

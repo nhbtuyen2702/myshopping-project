@@ -1,0 +1,29 @@
+--
+-- Table structure for table `sections_articles`
+--
+
+DROP TABLE IF EXISTS `sections_articles`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `sections_articles` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `article_order` int DEFAULT NULL,
+  `article_id` int DEFAULT NULL,
+  `section_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKguoivqg4rnmm8nilb12x40ygh` (`article_id`),
+  KEY `FKnbym8cke5rnxjm8bdi70dapl` (`section_id`),
+  CONSTRAINT `FKguoivqg4rnmm8nilb12x40ygh` FOREIGN KEY (`article_id`) REFERENCES `articles` (`id`),
+  CONSTRAINT `FKnbym8cke5rnxjm8bdi70dapl` FOREIGN KEY (`section_id`) REFERENCES `sections` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `sections_articles`
+--
+
+LOCK TABLES `sections_articles` WRITE;
+/*!40000 ALTER TABLE `sections_articles` DISABLE KEYS */;
+INSERT INTO `sections_articles` VALUES (8,0,1,18),(9,1,11,18),(10,2,4,18),(11,3,9,18);
+/*!40000 ALTER TABLE `sections_articles` ENABLE KEYS */;
+UNLOCK TABLES;

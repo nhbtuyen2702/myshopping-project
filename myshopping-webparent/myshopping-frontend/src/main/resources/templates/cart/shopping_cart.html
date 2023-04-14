@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: page_head('My Shop Client', 'none')" />
+
+<body>
+<div class="container-fluid">
+	<div th:replace="navigation :: header_menu"></div>
+	<div th:replace="navigation :: search_nav"></div>
+
+	<div class="text-center">
+		<h2>Your Shopping Cart</h2>
+	</div>
+
+	<div class="row m-1">
+		<div class="col-sm-8"><!-- tỷ lệ: 8-4 -->
+			<th:block th:each="item, status : ${cartItems}">
+				<div class="row border rounded p-1" th:with="product = ${item.product}" th:id="'row' + ${status.count}">
+					<div class="col-1"><!-- trong 8 tiếp tục chia tỷ lệ 1-3-6-->
+						<div class="divCount">[[${status.count}]]</div>
+						<div><!-- trong thymeleaf cho phép tự tạo thuộc tính bất kỳ =>sử dụng cách này để lưu giá trị mong muốn. Ví dụ: th:rowNumber =>rowNumber là thuộc tính tự tạo -->	
+							<a class="fas fa-trash icon-dark linkRemove" th:rowNumber="${status.count}" 
+								th:href="@{'/cart/remove/' + ${product.id}}"></a>
+						</div>
+					</div>
+					
+					<div class="col-3">
+						<img th:src="@{${product.mainImagePath}}" class="img-fluid" /><!-- thay vì ${item.product.mainImagePath} thì chỉ cần ${product.mainImagePath} vì đã khai báo th:with="product = ${item.product}"  -->
+					</div>
+					
+					<div class="col-6">
+						<div><!-- bấm vào link này sẽ hiển thị trang product_detail ở 1 tab mới -->
+							<a th:href="@{'/p/' + ${product.alias}}" target="_blank"
+								th:title="${product.name}">
+								<b>[[${product.shortName}]]</b>
+							</a>
+						</div>
+						
+						<div th:replace="cart/quantity_control :: quantity_control(${item.quantity}, ${product.id})"></div><!-- ${product.id} dùng để lấy ra thẻ input theo productId -->
+						
+						<div>
+							<span>X&nbsp;</span>
+							<div th:replace="product/product_fragment :: product_price"></div>
+						</div>
+						<!-- 
+						[[${#numbers.formatDecimal(TARGET, MIN_INTEGER_DIGITS, THOUSANDS_POINT_TYPE, DECIMAL_DIGITS, DECIMAL_POINT_TYPE)}]]
+			            TARGET: giá trị cần định dạng
+			            MIN_INTEGER_DIGITS: số lượng chữ số phần nguyên tối thiểu
+			            THOUSANDS_POINT_TYPE: ký tự phân cách hàng nghìn của phần nguyên(COMMA là dấu , và POINT là dấu .)
+			            DECIMAL_DIGITS: số lượng chữ số phần thập phân(có làm tròn)
+			            DECIMAL_POINT_TYPE: ký tự phân cách giữa phần nguyên và phần thập phân(COMMA là dấu , và POINT là dấu .)
+			            
+			            Ví dụ: 
+			            estimatedTotal = 1234567.89
+			            Biểu thức: [[${#numbers.formatDecimal(estimatedTotal, 1, 'COMMA', 2, 'POINT')}]]
+			            Kết quả: estimatedTotal = 1,234,567.89
+			            -->
+						<div>
+							<span>=&nbsp;</span>
+							<span th:if="${CURRENCY_SYMBOL_POSITION == 'Before price'}" th:remove="tag">[[${CURRENCY_SYMBOL}]]</span><span th:id="'subtotal' + ${product.id}" class="h4 subtotal">[[${#numbers.formatDecimal(item.subtotal, 1, THOUSANDS_POINT_TYPE, DECIMAL_DIGITS, DECIMAL_POINT_TYPE)}]]</span><span th:if="${CURRENCY_SYMBOL_POSITION == 'After price'}" th:remove="tag">[[${CURRENCY_SYMBOL}]]</span>						
+						</div>												
+					</div>
+				</div>
+				
+				<div class="row m-1" th:id="'blankLine' + ${status.count}">&nbsp;</div><!-- tạo 1 khoảng trắng ở giữa các cartItems -->
+			</th:block>
+		</div>
+		
+		<!-- nếu cartItems khác rỗng thì mới hiện div này -->
+		<div class="col-sm-4" th:unless="${#lists.isEmpty(cartItems)}" id="sectionTotal">
+			<div>
+				<span class="h3">Estimated Total:</span>
+			</div>
+			
+			<div class="mt-2">
+				<span th:if="${CURRENCY_SYMBOL_POSITION == 'Before price'}" th:remove="tag">[[${CURRENCY_SYMBOL}]]</span><span id="total" class="h2">[[${#numbers.formatDecimal(estimatedTotal, 1, THOUSANDS_POINT_TYPE, DECIMAL_DIGITS, DECIMAL_POINT_TYPE)}]]</span><span th:if="${CURRENCY_SYMBOL_POSITION == 'After price'}" th:remove="tag">[[${CURRENCY_SYMBOL}]]</span>				
+			</div>
+			
+			<div class="mt-2">
+				<div th:if="${shippingSupported}">
+					<form th:action="@{/checkout}">
+						<button type="submit" class="btn btn-danger p-3 mt-2">Check Out</button>
+					</form>
+				</div>
+					
+				<div th:unless="${shippingSupported}">
+					<div><span class="h5 text-warning">No shipping available for your location</span></div>
+					
+					<div th:if="${usePrimaryAddressAsDefault}">
+						<a th:href="@{/account_details(redirect=cart)}" class="h6">Update your address</a>
+					</div>
+					
+					<div th:unless="${usePrimaryAddressAsDefault}">
+						<a th:href="@{/address_book(redirect=cart)}" class="h6">Use another shipping address</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+	
+	<!-- 
+	d-none là bootstrap css dùng để ẩn đi thẻ 
+	nếu cartItems rỗng =>ko thêm class 'd-none' =>div này sẽ hiện ra
+	nếu cartItems khác rỗng =>sẽ thêm class 'd-none' =>div này sẽ ko hiện ra 
+	-->
+	<div id="sectionEmptyCartMessage" th:class="'text-center' + ${#lists.isEmpty(cartItems) ? '' : ' d-none'}" >
+		<h3>You have not chosen any products yet.</h3>
+	</div>
+	
+	<div th:replace="fragments :: modal_dialog"></div>
+	
+	<div th:replace="navigation :: footer_menu"></div>
+</div>	
+
+<script type="text/javascript" th:src="@{/js/jquery.number.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/common_modal.js}"></script>
+<script type="text/javascript" th:src="@{/js/shopping_cart.js}"></script>
+
+<script type="text/javascript">
+	contextPath = "[[@{/}]]";
+	var csrfHeaderName = "[[${_csrf.headerName}]]";
+	var csrfValue = "[[${_csrf.token}]]";
+	
+	decimalDigits = [[${DECIMAL_DIGITS}]];
+	decimalPointType = "[[${DECIMAL_POINT_TYPE}]]";
+	thousandsPointType = "[[${THOUSANDS_POINT_TYPE}]]";
+	
+</script>
+
+</body>
+</html>

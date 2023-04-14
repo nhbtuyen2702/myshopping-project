@@ -1,0 +1,24 @@
+--
+-- Table structure for table `settings`
+--
+
+DROP TABLE IF EXISTS `settings`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `settings` (
+  `key` varchar(128) NOT NULL,
+  `value` varchar(1024) NOT NULL,
+  `category` varchar(45) NOT NULL,
+  PRIMARY KEY (`key`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `settings`
+--
+
+LOCK TABLES `settings` WRITE;
+/*!40000 ALTER TABLE `settings` DISABLE KEYS */;
+INSERT INTO `settings` VALUES ('COPYRIGHT','Copyright (C) 2021 by myshop and its affiliates','GENERAL'),('CURRENCY_ID','1','CURRENCY'),('CURRENCY_SYMBOL','$','CURRENCY'),('CURRENCY_SYMBOL_POSITION','Before price','CURRENCY'),('CUSTOMER_VERIFY_CONTENT','<span style=\"font-size:18px;\">Dear [[name]],<br><br>\r\n</span><div><span style=\"font-size:18px;\">Click the link below to verify your registration:</span></div><h2><br></h2><h2>\r\n\r\n<a href=\"[[URL]]\" target=\"_self\">VERIFY</a></h2><div><span style=\"font-size: 18px;\"><br></span><div><span style=\"font-size:18px;\">\r\n<br>\r\nThank you,<br>\r\nThe myshop Team.</span><span style=\"font-size:16px;\"></span><span style=\"font-size:16px;\"></span></div></div>','MAIL_TEMPLATES'),('CUSTOMER_VERIFY_SUBJECT','Please verify your registration to continue shopping','MAIL_TEMPLATES'),('DECIMAL_DIGITS','2','CURRENCY'),('DECIMAL_POINT_TYPE','POINT','CURRENCY'),('MAIL_FROM','myshop.company@gmail.com','MAIL_SERVER'),('MAIL_HOST','smtp.gmail.com','MAIL_SERVER'),('MAIL_PASSWORD','kaalrnztlddvpzbv','MAIL_SERVER'),('MAIL_PORT','587','MAIL_SERVER'),('MAIL_SENDER_NAME','myshop Company','MAIL_SERVER'),('MAIL_USERNAME','myshop.company@gmail.com','MAIL_SERVER'),('ORDER_CONFIRMATION_CONTENT','Dear [[name]],&nbsp;<div>This email is to confirm that you have successfully placed an order through our website. Please review the following order summary:<div><br></div></div><div>- Order ID: [[orderId]]</div><div>- Order time: [[orderTime]]</div><div>- Ship to: [[shippingAddress]]</div><div>- Total: [[total]]</div><div>- Payment method: [[paymentMethod]]</div><div><br></div><div>We\'re currently processing your order. Click here to view full details of your order on our website (login required).</div><div><br></div><div>Thanks for purchasing products at myshop.</div><div>The myshop Team.</div>','MAIL_TEMPLATES'),('ORDER_CONFIRMATION_SUBJECT','Confirmation of your order ID #[[orderId]]','MAIL_TEMPLATES'),('PAYPAL_API_BASE_URL','https://api-m.sandbox.paypal.com','PAYMENT'),('PAYPAL_API_CLIENT_ID','ARgPr_yMjmml6F4zfsZXxo2X84wmrbJW9ApO0UhmcdVujCjWiixOOaxDiFKlRZxtxAEJoGb2x_DHsSdy','PAYMENT'),('PAYPAL_API_CLIENT_SECRET','EOFQMI3KM38HukThzJp_uQa1Kj08sckvKTc1kbBZLck5S8V6TVSDecAuQcUlLwUKgbKiV9m-nzqPJPce','PAYMENT'),('SITE_LOGO','/site-logo/shopping-logo.png','GENERAL'),('SITE_NAME','myshop','GENERAL'),('SMTP_AUTH','true','MAIL_SERVER'),('SMTP_SECURED','true','MAIL_SERVER'),('THOUSANDS_POINT_TYPE','COMMA','CURRENCY');
+/*!40000 ALTER TABLE `settings` ENABLE KEYS */;
+UNLOCK TABLES;

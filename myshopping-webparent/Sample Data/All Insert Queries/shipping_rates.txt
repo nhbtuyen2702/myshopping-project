@@ -1,0 +1,29 @@
+--
+-- Table structure for table `shipping_rates`
+--
+
+DROP TABLE IF EXISTS `shipping_rates`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `shipping_rates` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `country_id` int DEFAULT NULL,
+  `state` varchar(45) NOT NULL,
+  `rate` float NOT NULL,
+  `days` int NOT NULL,
+  `cod_supported` bit(1) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKef7sfgeybt3xn13nlt2j6sljw` (`country_id`),
+  CONSTRAINT `FKef7sfgeybt3xn13nlt2j6sljw` FOREIGN KEY (`country_id`) REFERENCES `countries` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `shipping_rates`
+--
+
+LOCK TABLES `shipping_rates` WRITE;
+/*!40000 ALTER TABLE `shipping_rates` DISABLE KEYS */;
+INSERT INTO `shipping_rates` VALUES (2,234,'New York',10,7,1),(3,234,'Florida',12,6,_binary '\0'),(5,242,'Hanoi',3.98,2,1),(6,234,'California',11.56,6,_binary '\0'),(7,242,'Hai Phong',3.93,2,_binary '\0'),(8,242,'Bac Giang',4.12,2,_binary '\0'),(9,242,'Phu Tho',4.21,3,_binary '\0'),(10,242,'Thanh Hoa',3.52,1,1),(11,106,'Karnataka',8.22,5,_binary '\0'),(12,106,'Maharashtra',8.69,5,1),(13,106,'Meghalaya',8.1,4,_binary '\0'),(14,106,'Punjab',7.89,3,_binary '\0'),(15,106,'Tamil Nadu',8.25,4,_binary '\0'),(16,106,'Telangana',7.72,4,_binary '\0'),(17,242,'Da Nang',0.5,1,1),(18,234,'Ohio',11.5,8,1),(19,78,'London',9.88,6,1),(20,106,'Delhi',8.45,5,1),(21,106,'West Bengal',8.88,5,1),(22,78,'Barton',7.78,6,1),(23,106,'Andhra Pradesh',8.12,6,1),(24,234,'Tennessee',12,8,1),(25,234,'Massachusetts',11.85,7,1),(26,14,'Queensland',4.99,5,1),(27,199,'Singapore',3.33,3,1),(28,39,'British Columbia',9.88,7,1),(29,14,'New South Wales',4.57,6,1),(30,234,'Illinois',13,9,1);
+/*!40000 ALTER TABLE `shipping_rates` ENABLE KEYS */;
+UNLOCK TABLES;

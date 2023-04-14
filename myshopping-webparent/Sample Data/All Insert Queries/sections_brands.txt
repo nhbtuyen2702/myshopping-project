@@ -1,0 +1,29 @@
+--
+-- Table structure for table `sections_brands`
+--
+
+DROP TABLE IF EXISTS `sections_brands`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `sections_brands` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `brand_order` int DEFAULT NULL,
+  `brand_id` int DEFAULT NULL,
+  `section_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK63hur81l4do6ck6x015gp3cuu` (`brand_id`),
+  KEY `FK68eeev3m314v82j0st116ftm9` (`section_id`),
+  CONSTRAINT `FK63hur81l4do6ck6x015gp3cuu` FOREIGN KEY (`brand_id`) REFERENCES `brands` (`id`),
+  CONSTRAINT `FK68eeev3m314v82j0st116ftm9` FOREIGN KEY (`section_id`) REFERENCES `sections` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `sections_brands`
+--
+
+LOCK TABLES `sections_brands` WRITE;
+/*!40000 ALTER TABLE `sections_brands` DISABLE KEYS */;
+INSERT INTO `sections_brands` VALUES (12,2,9,17),(13,3,1,17),(14,4,38,17),(15,0,21,17),(16,5,39,17),(17,1,10,17);
+/*!40000 ALTER TABLE `sections_brands` ENABLE KEYS */;
+UNLOCK TABLES;
