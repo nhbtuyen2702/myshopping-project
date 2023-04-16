@@ -15,7 +15,7 @@ import javax.persistence.Table;
 @Table(name = "articles")
 public class Article extends IdBasedEntity {
 
-	@Column(nullable = false, length = 256)
+	@Column(nullable = false, length = 255)
 	private String title;
 	
 	@Column(nullable = false)

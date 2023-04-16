@@ -9,7 +9,7 @@ CREATE TABLE `sections` (
   `id` int NOT NULL AUTO_INCREMENT,
   `description` varchar(2048) NOT NULL,
   `enabled` bit(1) NOT NULL,
-  `heading` varchar(256) NOT NULL,
+  `heading` varchar(255) NOT NULL,
   `section_order` int DEFAULT NULL,
   `type` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),

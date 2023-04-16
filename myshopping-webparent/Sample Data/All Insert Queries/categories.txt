@@ -12,7 +12,7 @@ CREATE TABLE `categories` (
   `image` varchar(128) NOT NULL,
   `enabled` bit(1) NOT NULL,
   `parent_id` int DEFAULT NULL,
-  `all_parent_ids` varchar(256) DEFAULT NULL,
+  `all_parent_ids` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_jx1ptm0r46dop8v0o7nmgfbeq` (`alias`),
   UNIQUE KEY `UK_t8o6pivur7nn124jehx7cygw5` (`name`),

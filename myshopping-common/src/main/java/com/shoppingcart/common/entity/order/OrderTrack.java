@@ -20,7 +20,7 @@ import com.shoppingcart.common.entity.IdBasedEntity;
 @Table(name = "order_track")
 public class OrderTrack extends IdBasedEntity {
 
-	@Column(length = 256)
+	@Column(length = 255)
 	private String notes;
 	
 	private Date updatedTime;

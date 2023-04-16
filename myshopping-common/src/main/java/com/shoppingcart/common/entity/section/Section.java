@@ -19,7 +19,7 @@ import com.shoppingcart.common.entity.IdBasedEntity;
 @Table(name = "sections")
 public class Section extends IdBasedEntity {
 	
-	@Column(length = 256, nullable = false, unique = true)
+	@Column(length = 255, nullable = false, unique = true)
 	private String heading;
 	
 	@Column(length = 2048, nullable = false)

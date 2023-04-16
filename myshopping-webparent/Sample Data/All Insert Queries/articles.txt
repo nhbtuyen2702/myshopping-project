@@ -10,7 +10,7 @@ CREATE TABLE `articles` (
   `alias` varchar(500) NOT NULL,
   `content` longtext NOT NULL,
   `published` bit(1) NOT NULL,
-  `title` varchar(256) NOT NULL,
+  `title` varchar(255) NOT NULL,
   `type` int DEFAULT NULL,
   `updated_time` datetime(6) DEFAULT NULL,
   `user_id` int DEFAULT NULL,

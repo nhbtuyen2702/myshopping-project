@@ -10,7 +10,7 @@ CREATE TABLE `order_track` (
   `order_id` int DEFAULT NULL,
   `status` varchar(45) NOT NULL,
   `updated_time` datetime(6) DEFAULT NULL,
-  `notes` varchar(256) DEFAULT NULL,
+  `notes` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK31jv1s212kajfn3kk1ksmnyfl` (`order_id`),
   CONSTRAINT `FK31jv1s212kajfn3kk1ksmnyfl` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`)

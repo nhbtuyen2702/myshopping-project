@@ -27,7 +27,7 @@ public class Category extends IdBasedEntity {
 	
 	private boolean enabled;
 	
-	@Column(name = "all_parent_ids", length = 256, nullable = true)
+	@Column(name = "all_parent_ids", length = 255, nullable = true)
 	private String allParentIDs;//solution để tìm product theo category -->allParentIDs sẽ chứa tất cả id của cha,ông,... nó
 	
 	@OneToOne//1-1

@@ -25,7 +25,7 @@ public class Menu {
 	@Column(nullable = false, length = 128, unique = true)
 	private String title;
 	
-	@Column(nullable = false, length = 256, unique = true)
+	@Column(nullable = false, length = 255, unique = true)
 	private String alias;
 	
 	private int position;
