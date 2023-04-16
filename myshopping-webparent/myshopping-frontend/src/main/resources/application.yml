@@ -1,13 +1,13 @@
 server:
   port: 8083
-  servlet:
-    context-path: /ShoppingCartClient
+  #servlet:
+    #context-path: /ShoppingCartClient
 spring:
   datasource:
     password: 27021994
     url: jdbc:mysql://localhost:3310/myshop
-    username: root    #hikari:      #minimum-idle: 1
-      #maximum-pool-size: 2
+    username: root    hikari:      minimum-idle: 1
+      maximum-pool-size: 2
   jpa:
     hibernate:
       ddl-auto: none
