@@ -7,6 +7,29 @@
   <name>myshopping-project</name>
   <description>myshopping-project</description>
   
+  <!--
+  <model>: Thẻ này định nghĩa một mô hình POM (Project Object Model) cho dự án. Nó chứa các thông tin về các module con, các bản phát hành và các plugin được sử dụng trong dự án.
+  <groupId>: Định nghĩa một tên nhóm cho dự án, thường được sử dụng để phân loại các dự án tương tự.
+  <artifactId>: Định nghĩa tên của dự án, là một phần của định danh duy nhất cho dự án (bao gồm cả groupId).
+  <version>: Xác định phiên bản của dự án, được sử dụng để phân biệt các bản phát hành khác nhau của cùng một dự án.
+  <name>: Tên của dự án, thường được sử dụng để hiển thị tên của dự án trong các công cụ quản lý dự án.
+  <description>: Mô tả về dự án, giúp cho người đọc hiểu được mục đích và tính chất của dự án.
+  -->
+  
+  <!-- 
+  Khi sử dụng <packaging>jar</packaging>, Maven sẽ tạo ra một file .jar, đóng gói tất cả các phụ thuộc của ứng dụng vào file jar đó.
+  File jar này có thể được chạy bằng cách sử dụng lệnh java -jar <tên-file.jar>.
+  
+  Khi sử dụng <packaging>pom</packaging>, Maven sẽ tạo ra một file pom.xml trống để sử dụng làm file cha để đóng gói các module con. File pom.xml này chỉ chứa các phần mô tả của module,
+  các phụ thuộc và thông tin liên quan đến quản lý dự án.
+  
+  Vì vậy, nếu dự án của bạn chỉ là một module con, hoặc một module mà không có mã nguồn để đóng gói, 
+  bạn có thể sử dụng <packaging>pom</packaging>. 
+  Nếu bạn có mã nguồn và muốn đóng gói thành một file jar để chạy, bạn nên sử dụng <packaging>jar</packaging>.
+   -->
+  
+  
+  
   <modules> <!-- khai báo modules chứa các project con bên trong -->
   	<module>myshopping-common</module>
   	<module>myshopping-webparent</module>
