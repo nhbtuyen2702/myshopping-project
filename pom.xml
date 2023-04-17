@@ -17,11 +17,18 @@
   -->
   
   <!-- 
-  Khi sử dụng <packaging>jar</packaging>, Maven sẽ tạo ra một file .jar, đóng gói tất cả các phụ thuộc của ứng dụng vào file jar đó.
+  Trong Maven, "packaging" được sử dụng để chỉ định loại file được tạo ra sau khi quá trình build được hoàn thành. 
+  Ba giá trị phổ biến nhất của "packaging" là "jar", "war" và "pom".
+  
+  <packaging>jar</packaging>, Maven sẽ tạo ra một file .jar, đóng gói tất cả các phụ thuộc của ứng dụng vào file jar đó.
   File jar này có thể được chạy bằng cách sử dụng lệnh java -jar <tên-file.jar>.
   
-  Khi sử dụng <packaging>pom</packaging>, Maven sẽ tạo ra một file pom.xml trống để sử dụng làm file cha để đóng gói các module con. File pom.xml này chỉ chứa các phần mô tả của module,
-  các phụ thuộc và thông tin liên quan đến quản lý dự án.
+  <packaging>war</packaging> sẽ tạo ra một file .war, là một file đóng gói của các tài nguyên web, 
+  bao gồm các file HTML, JSP, servlet, file class và các file tài nguyên khác, để triển khai trên một máy chủ web.
+  war thường được dùng khi triển khai lên một server web như Tomcat
+  
+  <packaging>pom</packaging>, Maven không tạo ra bất kỳ file jar hoặc war nào, thay vào đó sẽ tạo ra một file pom.xml trống
+  để sử dụng làm file cha để đóng gói các module con.
   
   Vì vậy, nếu dự án của bạn chỉ là một module con, hoặc một module mà không có mã nguồn để đóng gói, 
   bạn có thể sử dụng <packaging>pom</packaging>. 
