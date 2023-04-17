@@ -12,6 +12,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+
+import com.shoppingcart.common.Constants;
 //Lưu ý cách đặt tên trong toàn bộ entity này, khi tạo xong table trong db thì phải alter table và sắp xếp thứ tự các cột giống thứ tự thuộc tính trong entity
 @Entity//khai báo class này là 1 entity, nếu ko khai báo name cho entity thì nó lấy tên class làm tên entity(thường tên entity sẽ là tên class)
 @Table(name = "users")//khai báo table tương ứng của entity này là users, nếu ko khai báo name cho table thì nó lấy tên class làm tên table(tên table là số nhiều)
@@ -120,7 +122,8 @@ public class User extends IdBasedEntity {
 	public String getPhotosImagePath() {
 		if (id == null || photos == null)
 			return "/images/default-user.png";//nếu id == null thì hiển thị hình mặc định
-		return "/user-photos/" + this.id + "/" + this.photos;//đường dẫn đến file hình
+		//return "/user-photos/" + this.id + "/" + this.photos;//đường dẫn đến file hình
+		return Constants.S3_BASE_URI + "/user-photos/" + this.id + "/" + this.photos;
 	}
 	
 	@Transient//@Transient sẽ bị bỏ qua khi làm việc với entity user

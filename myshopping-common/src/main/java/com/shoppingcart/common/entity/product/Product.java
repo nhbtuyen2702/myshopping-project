@@ -18,6 +18,7 @@ import javax.persistence.Transient;
 
 import com.shoppingcart.common.entity.product.ProductDetail;
 import com.shoppingcart.common.entity.product.ProductImage;
+import com.shoppingcart.common.Constants;
 import com.shoppingcart.common.entity.Brand;
 import com.shoppingcart.common.entity.Category;
 import com.shoppingcart.common.entity.IdBasedEntity;
@@ -263,7 +264,8 @@ public class Product extends IdBasedEntity {
 	public String getMainImagePath() {
 		if (id == null || mainImage == null) return "/images/image-thumbnail.png";
 		
-		return "/product-images/" + this.id + "/" + this.mainImage;
+		//return "/product-images/" + this.id + "/" + this.mainImage;
+		return Constants.S3_BASE_URI +"/product-images/" + this.id + "/" + this.mainImage;
 	}
 
 	public List<ProductDetail> getDetails() {

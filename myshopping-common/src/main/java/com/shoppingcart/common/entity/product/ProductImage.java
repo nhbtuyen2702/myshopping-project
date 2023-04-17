@@ -7,6 +7,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import com.shoppingcart.common.Constants;
 import com.shoppingcart.common.entity.IdBasedEntity;
 import com.shoppingcart.common.entity.product.Product;
 
@@ -54,7 +55,8 @@ public class ProductImage extends IdBasedEntity {
 	
 	@Transient
 	public String getImagePath() {
-		return "/product-images/" + product.getId() + "/extras/" + this.name;
+		//return "/product-images/" + product.getId() + "/extras/" + this.name;
+		return Constants.S3_BASE_URI + "/product-images/" + product.getId() + "/extras/" + this.name;
 	}
 	
 }

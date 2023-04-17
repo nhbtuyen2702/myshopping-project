@@ -11,6 +11,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import com.shoppingcart.common.Constants;
+
 @Entity
 @Table(name = "brands")
 public class Brand extends IdBasedEntity {
@@ -70,6 +72,7 @@ public class Brand extends IdBasedEntity {
 	@Override
 	public String toString() {
 		return "Brand [id=" + id + ", name=" + name + ", categories=" + categories + "]";
+		
 	}
 
 	@Transient
@@ -77,6 +80,7 @@ public class Brand extends IdBasedEntity {
 		if (this.id == null)
 			return "/images/image-thumbnail.png";
 
-		return "/brand-logos/" + this.id + "/" + this.logo;
+		//return "/brand-logos/" + this.id + "/" + this.logo;
+		return Constants.S3_BASE_URI + "/brand-logos/" + this.id + "/" + this.logo;		
 	}
 }
