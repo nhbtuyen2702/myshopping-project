@@ -99,5 +99,54 @@ Sau khi export xong thì vào Workbench đã kế nối tới heroku chọn data
 Sau khi import thành công thì vào brower truy cập đường dẫn https://myshopping-backend.herokuapp.com -->Done
 
 */
+	
+/*
+S3
+
+
+
+1. Search IAM > chọn User groups > chọn Create group > User group name: AWS_Admin > chọn Create group
+Nhấn vào AWS_Admin > chọn Permission > Add permissions > Attach policies > nhập IAMFullAccess, chọn IAMFullAccess và chọn Add permissions
+> tiếp tục nhập AdministratorAccess, chọn AdministratorAccess và chọn Add permissions
+-->group AWS_Admin đã có tất cả các quyền của 2 permissions IAMFullAccess và AdministratorAccess
+
+2. Search IAM > chọn IAM > chọn Users > Add users > nhập User name: admin, chọn Provide user access to the AWS Management Console > chọn Custom password: nhập password là Admin123, bỏ check Users must create a new password at next sign-in > chọn Next > check vào AWS_Admin > chọn Next > Create User > xuất hiện link dùng để login
+-->logout và truy cập link > nhập username và password
+
+
+Kết luận:
+user admin được add vào group IAMFullAccess và AdministratorAccess nên user admin đã có tất cả các quyền của IAMFullAccess và AdministratorAccess
+
+===============================
+
+3. Search IAM > chọn User groups > chọn Create group > User group name: S3_Admin > chọn Create group
+Nhấn vào AWS_Admin > chọn Permission > Add permissions > Attach policies > nhập AmazonS3FullAccess, chọn AmazonS3FullAccess và chọn Add permissions
+-->group S3_Admin đã có quyền của permissions AmazonS3FullAccess
+
+4. Search IAM > chọn IAM > chọn Users > Add users > nhập User name: s3_admin, chọn Provide user access to the AWS Management Console > chọn Custom password: nhập password là Admin123, bỏ check Users must create a new password at next sign-in > chọn Next > check vào AWS_Admin > chọn Next > Create User > xuất hiện link dùng để login
+-->logout và truy cập link > nhập username và password
+
+Kết luận:
+user s3_admin được add vào group AmazonS3FullAccessnên user s3_admin đã có tất cả các quyền của AmazonS3FullAccessnên
+
+===============================
+
+5. Search S3 > chọn Buckets > chọn Create bucket > Bucket name: myshopping-files, AWS region: ap_southeast-1(chỗ này nên chọn location gần với mình nhất) > chọn Create bucket
+Nhấn vào myshopping-files > chọn Permission > Block public access: chọn Edit > bỏ check Block all public access > chọn Save changes > nhập confirm, chọn Confirm
+Chọn Objects > chọn Upload > chọn folder > chọn Add folder > chọn các folder user-photos,... > chọn Upload
+
+Nhấn vào myshopping-files > chọn Permission > chọn Access control list (ACL) > Edit > xuất hiện cửa số Edit access control list(ACL) > chọn Everyone(public access), chọn List và Read, chọn I understand... > chọn Save changes
+-->thử nhấn vào myshopping-files > user-photos > 1 > admin.png > Object URL(đường dẫn để lấy hình này)
+
+===============================
+
+Làm tương tự cho brand-logos, chú ý phần permissions chọn Choose from predefined ACLs, chọn Grant public-read access, chọn I understand...
+
+===============================
+
+6. Thêm 2 biến môi trường(phải EXIT(ko reset) eclipse thì nó mới ăn), sửa code
+...
+nhớ tắt heroku
+*/
 
 }
